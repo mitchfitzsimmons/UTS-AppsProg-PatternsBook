@@ -10,7 +10,7 @@ This is the patterns book for applications programming
 #### Sum pattern
 **Goal:** Find the sum of a collection of items.
 
-```
+```Java
 <type> sum = 0;
  <for each item>
  {
@@ -49,19 +49,19 @@ Goal: Read a value from the user.
 
 * **Pattern:** 
 
-```
+```Java
 System.out.print(“<prompt>”);
 <type> <variable> = <read operation>;
 ```
 *or*
 
-```
+```Java
 System.out.print(“<prompt>”); 
 <variable> = <read operation>;
 ```
 * **e.g. read an age:** 
 
-```
+```Java
 System.out.print(“Age: “); int age = In.nextInt();
 ```
 
@@ -73,7 +73,7 @@ System.out.print(“Age: “); int age = In.nextInt();
 
 **Goal:** Read values until the user enters an “end of input” value.
 
-```
+```Java
 <read pattern>
 while (<value> != <end value>) {
    <use the value>
@@ -94,7 +94,7 @@ value immediately after a \<read pattern>.
 
 **Goal:** Loop over items in an array.
 
-```
+```Java
 for (int i = 0; i < <array>.length; i++)
 {
    <use the item array[i]>
@@ -109,14 +109,14 @@ for (int i = 0; i < <array>.length; i++)
 
 **Goal** (without guard): Count the number of items in a collection. 
 
-```
+```Java
 int count = 0;
 <for each item>
 	count++;
 ```
 **Goal** (with guard): Count the number of items that satisfy a condition.
  
-```
+```Java
 int count = 0;
 <for each item>
 	if (<guard>)
