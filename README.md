@@ -127,9 +127,7 @@ for (int i = 0; i < <array>.length; i++)
 }
 ```
 
-<br>
--
-<br>
+***
 
 #### Count Pattern
 
@@ -148,9 +146,8 @@ int count = 0;
 	if (<guard>)
 		count++;
 ```
-<br>
--
-<br>
+
+***
 
 
 ## Methods
