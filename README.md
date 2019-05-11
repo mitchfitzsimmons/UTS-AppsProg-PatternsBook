@@ -4,7 +4,7 @@ This is the patterns book for applications programming
 <br/>
 
 ## Table of Contents
-###Basic Patterns
+### Basic Patterns
 * Sum
 * Output
 * Read
@@ -12,7 +12,7 @@ This is the patterns book for applications programming
 * Array Loop
 * Count
 
-###Methods
+### Methods
 * String Functions
 	* String Loop
 	* For-each Loop
