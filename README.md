@@ -3,8 +3,32 @@
 This is the patterns book for applications programming
 <br/>
 
-### Table of Contents
+## Table of Contents
+###Basic Patterns
+* Sum
+* Output
+* Read
+* Read Loop
+* Array Loop
+* Count
 
+###Methods
+* String Functions
+	* String Loop
+	* For-each Loop
+	* Looping over words in a string user "split"
+	* Split by one or more spaces
+	* More String Functions
+* Output
+* Read
+* Read Loop
+* Array Loop
+* Count
+
+<br>
+-
+-
+<br>
 
 ## Basic Patterns
 #### Sum pattern
@@ -126,8 +150,6 @@ int count = 0;
 -
 <br>
 
-
-### Process
 
 ### Methods
 
