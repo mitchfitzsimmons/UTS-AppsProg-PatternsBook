@@ -28,7 +28,8 @@ This is the patterns book for the subject Applications Programming at UTS.
 
 
 <br>
----
+-
+-
 <br>
 
 ## Basic Patterns
@@ -51,7 +52,7 @@ the loop.
 * x += y adds the amount y onto x
 
 <br>
----
+-
 <br>
 
 
@@ -63,9 +64,7 @@ Goal: Show a value to the user.
 * **e.g. show a name:** ```System.out.println(“name is “ + name);```
  
 <br>
-
----
-
+-
 <br>
 
 
@@ -93,9 +92,7 @@ System.out.print(“Age: “); int age = In.nextInt();
 ```
 
 <br>
-
----
-
+-
 <br>
 
 #### Read Loop Pattern
@@ -116,7 +113,7 @@ while (<value> != <end value>) {
 value immediately after a \<read pattern>.
 
 <br>
----
+-
 <br>
 
 #### Array Loop Pattern
@@ -131,9 +128,7 @@ for (int i = 0; i < <array>.length; i++)
 ```
 
 <br>
-
----
-
+-
 <br>
 
 #### Count Pattern
@@ -154,9 +149,7 @@ int count = 0;
 		count++;
 ```
 <br>
-
----
-
+-
 <br>
 
 
@@ -183,9 +176,7 @@ System.out.println(“Number of l’s = “ + count);
 ```
 
 <br>
-
----
-
+-
 <br>
 
 #### For-each Loop
@@ -214,9 +205,7 @@ System.out.println(word);
 
 
 <br>
-
----
-
+-
 <br>
 
 #### Looping over words in a string user "split"
@@ -237,9 +226,7 @@ Next word = vegetables
 ```
 
 <br>
-
----
-
+-
 <br>
 
 #### Split by one or more spaces
@@ -257,9 +244,7 @@ for (String word : sentence.split(“ +“))
 ```
 
 <br>
-
----
-
+-
 <br>
 
 #### More String Functions
@@ -278,9 +263,7 @@ Function  | What is does
 
 
 <br>
-
----
-
+-
 <br>
 
 ### Functional Patterns
@@ -302,11 +285,8 @@ int readAge() {
 
 
 <br>
-
----
-
+-
 <br>
-
 #### Merged read loop
 
 ```Java
@@ -339,9 +319,7 @@ while (!(s = readString()).equals(“end”)) { <use s>
 ```
 
 <br>
-
----
-
+-
 <br>
 
 #### The “any” pattern
@@ -365,9 +343,7 @@ boolean anyNegative(int[] array) {
 ```
 
 <br>
-
----
-
+-
 <br>
 
 #### The “every” pattern
@@ -382,9 +358,7 @@ return true;
 
 
 <br>
-
----
-
+-
 <br>
 
 #### The “none” pattern
@@ -399,9 +373,7 @@ return true;
 
 
 <br>
-
----
-
+-
 <br>
 
 ## Classes
