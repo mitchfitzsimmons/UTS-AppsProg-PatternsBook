@@ -15,16 +15,16 @@ This is the patterns book for the subject Applications Programming at UTS.
 ### [Methods](#methods)
 * [String Functions](#strings)
 	* [String Loop](#string-loop)
-	* [For-each Loop](#For--each-Loop)
-	* [Looping over words in a string using "split"](#Looping-over-words-in-a-string-using-"split")
-	* [Split by one or more spaces]()
-	* [More String Functions]()
-* [Functional Patterns]()
-	* [Read loop with read functions]()
-	* [Merged read loop]()
-	* [The “any” pattern]()
-	* [The “every” pattern]()
-	* [The “none” pattern]()
+	* [For-each Loop](#For-each-Loop)
+	* [Looping over words in a string using split](#Looping-over-words-in-a-string-using-split)
+	* [Split by one or more spaces](#Split-by-one-or-more-spaces)
+	* [More String Functions](#More-String-Functions)
+* [Functional Patterns](#Functional-Patterns)
+	* [Read loop with read functions](#Read-loop-with-read-functions)
+	* [Merged read loop](#Merged-read-loop)
+	* [The “any” pattern](#the-any-pattern)
+	* [The “every” pattern](#the-every-pattern)
+	* [The “none” pattern](#the-none-pattern)
 
 
 
@@ -165,7 +165,7 @@ System.out.println(“Number of l’s = “ + count);
 
 ***
 
-#### For-each Loop
+#### For each Loop
 **Goal:** Loop over items in an array.
 
 Create an array of values
@@ -192,7 +192,7 @@ System.out.println(word);
 
 ***
 
-#### Looping over words in a string user "split"
+#### Looping over words in a string using split
 **Program**
 
 ```Java
@@ -297,7 +297,7 @@ while (!(s = readString()).equals(“end”)) { <use s>
 
 ***
 
-#### The “any” pattern
+#### The any pattern
 **Goal:** Determine if any item in a collection passes <test>
 
 ```Java
@@ -319,7 +319,7 @@ boolean anyNegative(int[] array) {
 
 ***
 
-#### The “every” pattern
+#### The every pattern
 **Goal:** Determine if all items in a collection pass <test>
 
 ```Java
@@ -334,7 +334,7 @@ return true;
 -
 <br>
 
-#### The “none” pattern
+#### The none pattern
 **Goal:** Determine if no items in a collection pass <test>
 
 ```Java
