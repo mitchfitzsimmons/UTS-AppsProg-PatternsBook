@@ -56,7 +56,7 @@ the loop.
 <br>
 
 
-####The output pattern
+#### **The output pattern((
 Goal: Show a value to the user.
 
 * **Pattern:** ```System.out.println(“<label>” + <value>);```
@@ -68,7 +68,7 @@ Goal: Show a value to the user.
 <br>
 
 
-#### Read Pattern 
+#### **Read Pattern**
 
 Goal: Read a value from the user.
 
