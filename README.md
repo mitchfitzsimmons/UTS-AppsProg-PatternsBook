@@ -5,8 +5,8 @@ This is the patterns book for the subject Applications Programming at UTS.
 
 ## Table of Contents
 ### Basic Patterns
-* [Sum](####sum-pattern)
-* [Output](####the-output-pattern)
+* [Sum](#sum-pattern)
+* [Output](#the-output-pattern)
 * Read
 * Read Loop
 * Array Loop
