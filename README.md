@@ -9,22 +9,23 @@ This is the patterns book for the subject Applications Programming at UTS.
 * [Output](#the-output-pattern)
 * [Read](#read-pattern)
 * [Read Loop](#read-loop-pattern)
-* [Array Loop]
-* [Count]
+* [Array Loop](#read-array-loop-pattern)
+* [Count](#count-pattern)
 
-### Methods
-* [String Functions
-	* String Loop
-	* For-each Loop
-	* Looping over words in a string user "split"
-	* Split by one or more spaces
-	* More String Functions
-* Functional Patterns
-	* Read loop with read functions
-	* Merged read loop
-	* The “any” pattern
-	* The “every” pattern
-	* The “none” pattern
+### [Methods](#methods)
+* [String Functions](#strings)
+	* [String Loop](#string-loop)
+	* [For-each Loop](#For--each-Loop)
+	* [Looping over words in a string using "split"](#Looping-over-words-in-a-string-using-"split")
+	* [Split by one or more spaces]()
+	* [More String Functions]()
+* [Functional Patterns]()
+	* [Read loop with read functions]()
+	* [Merged read loop]()
+	* [The “any” pattern]()
+	* [The “every” pattern]()
+	* [The “none” pattern]()
+
 
 
 ***
