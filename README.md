@@ -27,10 +27,9 @@ This is the patterns book for the subject Applications Programming at UTS.
 	* The “none” pattern
 
 
-<br>
--
--
-<br>
+***
+
+***
 
 ## Basic Patterns
 #### Sum pattern
@@ -51,9 +50,7 @@ over a collection of items
 the loop.
 * x += y adds the amount y onto x
 
-<br>
--
-<br>
+***
 
 
 #### **The output pattern((
@@ -63,9 +60,7 @@ Goal: Show a value to the user.
 * **e.g. show an age:** ``` System.out.println(“age is “ + age);```
 * **e.g. show a name:** ```System.out.println(“name is “ + name);```
  
-<br>
--
-<br>
+***
 
 
 #### **Read Pattern**
@@ -91,9 +86,7 @@ System.out.print(“<prompt>”);
 System.out.print(“Age: “); int age = In.nextInt();
 ```
 
-<br>
--
-<br>
+***
 
 #### Read Loop Pattern
 
@@ -112,9 +105,7 @@ while (<value> != <end value>) {
 * always test for the “end of input”
 value immediately after a \<read pattern>.
 
-<br>
--
-<br>
+***
 
 #### Array Loop Pattern
 
@@ -172,9 +163,7 @@ for (int i = 0; i < s.length(); i++) {
 System.out.println(“Number of l’s = “ + count);
 ```
 
-<br>
--
-<br>
+***
 
 #### For-each Loop
 **Goal:** Loop over items in an array.
@@ -201,9 +190,7 @@ System.out.println(word);
 **Read:** For each word in array, print that word.
 
 
-<br>
--
-<br>
+***
 
 #### Looping over words in a string user "split"
 **Program**
@@ -222,9 +209,7 @@ Next word = your
 Next word = vegetables
 ```
 
-<br>
--
-<br>
+***
 
 #### Split by one or more spaces
 * If you have a string with extra spaces between words:
@@ -240,9 +225,7 @@ for (String word : sentence.split(“ +“))
    System.out.println(“Next word = “ + word);
 ```
 
-<br>
--
-<br>
+***
 
 #### More String Functions
 
@@ -259,9 +242,7 @@ Function  | What is does
 
 
 
-<br>
--
-<br>
+***
 
 ### Functional Patterns
 
@@ -281,9 +262,8 @@ int readAge() {
 **Problem:** There is still repeated code: age = readAge();
 
 
-<br>
--
-<br>
+***
+
 #### Merged read loop
 
 ```Java
@@ -315,9 +295,7 @@ while (!(s = readString()).equals(“end”)) { <use s>
 }
 ```
 
-<br>
--
-<br>
+***
 
 #### The “any” pattern
 **Goal:** Determine if any item in a collection passes <test>
@@ -339,9 +317,7 @@ boolean anyNegative(int[] array) {
     return false;
 ```
 
-<br>
--
-<br>
+***
 
 #### The “every” pattern
 **Goal:** Determine if all items in a collection pass <test>
@@ -369,9 +345,7 @@ return true;
 ```
 
 
-<br>
--
-<br>
+***
 
 ## Classes
 
