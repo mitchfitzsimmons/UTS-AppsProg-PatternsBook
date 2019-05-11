@@ -4,16 +4,16 @@ This is the patterns book for the subject Applications Programming at UTS.
 <br/>
 
 ## Table of Contents
-### Basic Patterns
+### [Basic Patterns](#basic-patterns)
 * [Sum](#sum-pattern)
 * [Output](#the-output-pattern)
-* Read
-* Read Loop
-* Array Loop
-* Count
+* [Read](#read-pattern)
+* [Read Loop](#read-loop-pattern)
+* [Array Loop]
+* [Count]
 
 ### Methods
-* String Functions
+* [String Functions
 	* String Loop
 	* For-each Loop
 	* Looping over words in a string user "split"
@@ -52,7 +52,7 @@ the loop.
 ***
 
 
-#### **The output pattern((
+#### The output pattern
 Goal: Show a value to the user.
 
 * **Pattern:** ```System.out.println(“<label>” + <value>);```
@@ -62,7 +62,7 @@ Goal: Show a value to the user.
 ***
 
 
-#### **Read Pattern**
+#### Read Pattern
 
 Goal: Read a value from the user.
 
