@@ -330,9 +330,8 @@ return true;
 ```
 
 
-<br>
--
-<br>
+***
+
 
 #### The none pattern
 **Goal:** Determine if no items in a collection pass <test>
@@ -349,4 +348,553 @@ return true;
 
 ## Classes
 
+#### toString Method for classes/object
+Returns a string representation of the object. This is a standard method of all classes and we override the default behaviour.
+ 
+
+```Java
+public class Account {
+   ...
+   	@Override
+   	public String toString() {
+       return “The account has $” + balance;
+ 	} 
+ }
+```
+
+***
+
+####  Format to 2 decimal places - pattern
+**Goal:** Show to two decimal places. 
+
+```Java
+@Override
+public String toString() {
+	return “The account has $” + formatted(balance);
+}
+private String formatted(double value) {
+	DecimalFormat f = new DecimalFormat(“###,##0.00”);
+   	Return f.format(value);
+}
+```
+
+***
+
+#### Getter and setter methods
+- A getter returns a field The name is get<Field>
+- A setter sets a field The name is set<Field>
+  
+
+```Java
+public class Account {
+   private String name;
+   ...
+   public String getName() {
+       return name;
+   }
+   public void setName(String name) {
+        this.name = name;
+   }
+}
+```
+
+***
+
+#### Creating an object
+- Creating an object using a constructor:
+```Java
+Account janesAccount = new Account(“Jane Knowles”, “Savings”, 25283.21) ;
+```
+
+***
+
+
+- 'new' returns the memory address of the new object. The memory address is also known as: “reference” / “pointer”.
+- The variable janesAccount stores a pointer to the object, NOT the object itself.
+ 
+***
+
+
+#### Passing an object
+- Passing an object actually passes the memory address.
+
+	```Java
+	Account janesAccount = new Account(“Jane Knowles”, “Savings”, 25283.21); 
+	use(janesAccount)
+	
+	private void use(Account account) { 
+		... use account here ...
+	}
+	```
+
+***
+
+
+#### Using a toString Method
+- Using another object’s toString method
+	- Explicitly: ```System.out.println(janesAccount.toString());```
+	- Implicitly: ```System.out.println(janesAccount);```
+- Using this object’s toString method
+	- Explicitly without this: ```System.out.println(toString());```
+	- Explicitly with this: ```System.out.println(this.toString());```
+	- Implicitly with this: ```System.out.println(this);```
+
+***
+
+#### Menu Pattern
+- Read choice until exit char choice;
+
+	```while ((choice = readChoice()) != ‘x’)```
+
+- Execute an action 
+
+	```Java
+	switch (choice) {
+	         case ‘d’: deposit(); break;
+	         case ‘w’: withdraw(); break;
+	         case ‘s’: show(); break;
+	```
+
+- One procedure for each action 
+
+	```private void deposit()```
+
+- Exit is not a switch case.
+- The end-of-input flag ‘x’ ends the loop.
+ 
+***
+
+
 ## Lists 
+### Array Lists
+<img src="images/arraylist1.png" style="height: 200px;"> 
+<img src="images/arraylist2.png" style="height: 200px;"> 
+
+#### Should I use an array list?
+- Array lists provide instant access to any element. They are FAST.
+- Adding elements to the end of an array list is reasonably fast.
+- Inserting elements near the beginning of a list is slow.
+
+Use an array list if you need random access to elements.
+Don’t use an array list if you often need to insert elements near the beginning.
+
+### Linked Lists
+<img src="images/linkedlist1.png" style="height: 200px;"> 
+
+#### Should I use a linked list?
+- Linked lists provide SLOW access to random elements.
+- Adding elements to the beginning or end is FAST.
+- Linked lists require more memory to store the “links”.
+
+Use a linked list if you add and remove elements often.
+Don’t use a linked list if you need fast random access to any element. 
+Don’t use a linked list if you have a large data set and limited memory.
+
+#### Type parameters vs Method parameters 
+- Method parameters go after a method and use round brackets: 
+	- ```System.out.println(“zoo”);```
+	- ```repeat(5, “* “);```
+- Type parameters go after a type and use angled brackets:
+	- ``` LinkedList<Customer> customers; ```
+	- ```ArrayList<Card> cards; ```
+	- 	```TreeSet<String> symbols; ```
+- Type parameters must be classes. For primitives, use class wrappers: 
+	- ```LinkedList<Integer> ages;```
+	- ```ArrayList<Double> rainfall;```
+ 
+#### LinkedList\<X\> and ArrayList\<X\> methods
+
+
+Method  | Description
+------------- | -------------
+```add(X element)``` | Add an element of type X to the end
+```add(int i, X element)``` | Add an element of type X at position i
+```remove(X element)``` | Remove this element
+```remove(int i)``` | Remove the element at position i
+```set(int i, X element)``` | Replace the element at position i
+``X get(int i)``` | Return the element at position i
+``int size()``` | Return the size of the list
+``clear()``` | Remove all elements
+For more, see: [https://docs.oracle.com/javase/7/docs/api/java/lang/List.html](https://docs.oracle.com/javase/7/docs/api/java/lang/List.html)
+
+***
+
+#### Looping over a list
+Use a for-each loop.
+
+```Java
+LinkedList<String> words = new LinkedList<String>();
+words.add(“one”);
+words.add(“two”);
+words.add(“three”);
+for (String word : words)
+   System.out.println(word);
+ 
+```
+***
+
+
+#### Copying a list
+Use a for-each loop.
+
+```Java
+LinkedList<String> original = new LinkedList<String>();
+// -- add elements to original --
+
+LinkedList<String> copy = new LinkedList<String>();
+for (String word : original)
+   copy.add(word);
+```
+Use addAll.
+
+```Java
+LinkedList<String> original = new LinkedList<String>();
+
+// -- add elements to original --
+LinkedList<String> copy = new LinkedList<String>();
+copy.addAll(original);
+```
+***
+
+
+#### Lookup Pattern
+**Goal:** Find and return an element in a list. Return null if not found.
+
+```Java
+<for each item in the list>
+    if (<this is the item I want>)
+         return <item>;
+return null;
+```
+**Example:** Find a particular kind of account. e.g. account(“Savings”)
+
+```Java
+private Account account(String type) { 
+	for (Account account : accounts)
+         if (type.equals(account.getType()))
+             return account;
+    return null;
+}
+```
+
+***
+
+
+#### Match Function - Push Right
+##### Client
+```Java
+public class Customer {
+  private Account account(String type) {
+	for (Account account : accounts) if (account.hasType(type))
+        return account;
+    return null;
+}
+```
+ 
+##### Supplier
+```Java
+public class Account {
+  private String type;
+  public boolean hasType(String type) {
+    return type.equals(this.type);
+  }
+}
+```
+
+***
+
+
+## System Design
+More to Come
+
+<br>
+***
+
+
+## GUIs
+### JavaFX Concepts
+- A node is a graphical object (e.g. a Button, TextField, Label, GridPane).
+- A scene is a tree of nodes.
+	<img src="images/scenetree.png" style="height: 200px; padding-left: 15px"> 
+- A stage is a place to display a scene (typically a window).
+- An application has a main method. It sets up and shows the primary stage.
+
+####Scene Graph
+<img src="images/scenegraph.png" align="right" style="height: 200px;"> 
+	
+- A scene is a tree of nodes.
+- Each node is either a branch or a leaf.
+	- A branch node can have children e.g. GridPane, HBox, VBox
+	- A leaf node cannot have children e.g. Button, Label, TextField
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+***
+
+
+#### Nested Branches
+<img src="images/nested-branches.png" style="height: 270px;">
+
+***
+
+
+#### Packages to Import
+```Java
+//Nodes:
+import javafx.scene.control.*; 
+import javafx.scene.layout.*; 
+import javafx.scene.text.*; 
+import javafx.scene.image.*;
+
+//Scene:
+import javafx.scene.*;
+
+//Stage:
+import javafx.stage.*;
+
+//Application:
+import javafx.application.*;
+```
+***
+
+
+#### Leaf Nodes
+<img src="images/leaf-nodes.png"style="height: 270px;" >
+
+***
+
+#### Branch Nodes - VBox
+- A VBox lays out its children in a vertical box.
+- Create a VBox with 10 pixel spacing:
+	
+	```VBox box = new VBox(10);```
+	
+- Add the the children one by one: 
+
+	```Hava
+	box.getChildren().add(usernameLbl);
+	box.getChildren().add(usernameTf);
+	box.getChildren().add(passwordPf);
+	```
+
+- Or add many children at once: 
+
+	```box.getChildren().addAll(loginBtn, flowerIv);```
+	
+- Or Create a VBox with children:
+
+	```VBox box = new VBox(10, usernameLbl, usernameTf, passwordPf, loginBtn, flowerIv);```
+
+<img src="images/vbox.png">
+
+***
+
+
+#### Branch Nodes - HBox
+
+- An HBox lays out its children in a horizontal box.
+- HBox box = new HBox(10);
+
+    ```box.getChildren().addAll(usernameLbl, usernameTf, loginBtn, flowerIv);```
+    
+    <img src="images/hbox1.png" style="height:75px">
+    
+- Align with setAlignment:
+
+	```box.setAlignment(Pos.CENTER);```
+	
+	<img src="images/hbox2.png" style="height:73px">
+	
+***
+
+####Branch Nodes - Alignment
+
+- Import
+
+	```java
+	import javafx.geometry.*; 
+	box.setAlignment(position);
+	```
+	
+- Valid positions: 
+
+	```java
+	Pos.CENTER
+	Pos.CENTER_LEFT 
+	Pos.CENTER_RIGHT 
+	Pos.TOP_CENTER
+	Pos.BOTTOM_CENTER 
+	Pos.TOP_LEFT
+	Pos.TOP_RIGHT
+	Pos.BOTTOM_LEFT 
+	Pos.BOTTOM_RIGHT
+	```
+
+
+***
+ 
+#### Branch Nodes - GridPane
+ 
+- A GridPane lays out its children in a grid of rows and columns.
+- Create a GridPane:
+
+ 	```GridPane grid = new GridPane();```
+ 
+ 
+- Add children to the grid:
+
+	```Java
+	grid.add(usernameLbl, 0, 0); 
+	grid.add(passwordLbl, 0, 1); 
+	grid.add(usernameTf, 1, 0); 
+	grid.add(passwordPf, 1, 1); 
+	grid.add(loginBtn, 1, 2);
+	```
+
+<img src="images/gridpane.png" style="height: 150px; padding-left:25px">
+
+***
+
+#### Application Classs
+- The main class extends Application.
+	- It defines a main method.
+	- It overrides the start method.
+
+```Java
+public class BankApplication extends Application {
+   public static void main(String[] args) { launch(args); }
+   @Override
+   public void start(Stage stage) throws Exception {
+       ... code to set up and show the stage ...
+   }
+}
+```
+***
+
+### Sample Code
+
+#### Setup Code - 1. Create the Leaves
+
+```Java
+public class BankApplication extends Application { 
+	private Label usernameLbl;
+	private Label passwordLbl;
+	private TextField usernameTf;
+	private PasswordField passwordPf; 
+	private Button loginBtn;
+	
+	@Override public void start(Stage stage) throws Exception { 
+		usernameLbl = new Label("Username:");
+   		passwordLbl = new Label("Password:"); 
+   		usernameTf = new TextField(); 
+   		passwordPf = new PasswordField(); 
+   		loginBtn = new Button("Login");
+   		...
+   	}
+   	...
+}
+```
+
+#### Setup Code - 2. Add the leaves to a branch
+
+```Java
+@Override public void start(Stage stage) throws Exception {
+    ...
+	GridPane gridPane = new GridPane(); 
+	gridPane.add(usernameLbl, 0, 0); 	
+	gridPane.add(passwordLbl, 0, 1); 
+	gridPane.add(usernameTf, 1, 0); 
+	gridPane.add(passwordPf, 1, 1); 
+	gridPane.add(loginBtn, 1, 2);
+	...
+}
+```
+
+#### Setup code - 3. Set the scene, show the stage
+
+```Java
+@Override public void start(Stage stage) throws Exception {
+    ...
+	stage.setScene(new Scene(gridPane)); 
+	stage.setTitle(“Login”); 
+	stage.show();
+}
+ 
+```
+
+***
+
+### Patterns and Syntax
+
+#### 1. The Observer Pattern
+**Goal:** Observers are notified whenever a subject changes.
+
+**Example:**
+
+- A Button notifies you when it is clicked.
+- A File notifies you when it is modified.
+- A Product notifies you when it is sold.
+
+**Solution:** The solution has two phases:
+
+- Phase 1. Observers register with the subject.
+- Phase 2. When something happens to the subject, it notifies the observers.
+
+<br>
+
+***Phase 1 - Registration***: Each observer registers to be notified 
+
+<img src="images/observerpat1.png" style="height: 200px">
+
+```
+// Observer code:
+subject.addObserver(this);
+
+// Subject code:
+public void addObserver(Observer o) {
+     observers.add(o);
+}
+```
+<br>
+
+***Phase 2 - Notification***: When something happens to the subject, notify the observers. 
+
+<img src="images/observerpat2.png" style="height: 200px">
+
+```
+// Observer code:
+public void handle() {
+     do something in response
+}
+
+// Subject code:
+for (Observer o : observers)
+	o.handle();
+```
+
+***
+
+#### 2. Inner Classes
+
+
+***
+
+#### 3. Anonymous Inner Classes
+
+
+***
+
+#### 4. Lambda Expressions
+
+
+***
+
+
+## MVC - Model View Controller 
+
+
