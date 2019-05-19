@@ -877,24 +877,444 @@ for (Observer o : observers)
 	o.handle();
 ```
 
+<br>
+-
+
+
+
+**Sample - Notify observers when a product is sold**
+
+Observers want to be notified when a product is sold. Define an interface:
+
+```Java
+public interface ProductObserver { 
+	void handleSale(double money);
+}
+```
+
+The CashRegister is an observer:
+
+```Java
+public class CashRegister implements ProductObserver { private double cash;
+@Override public void handleSale(double money) {
+         cash += money;
+    }
+}
+```
+
+****Phase 1: Registration****
+
+```Java
+public class Store {
+  	private Product product;
+  	private CashRegister cashRegister;
+  	
+	public Store() {
+  		product = new Product();
+  		cashRegister = new CashRegister();
+  		product.addObserver(cashRegister);
+	}
+}
+```
+```Java
+public class Product {
+  	private LinkedList<ProductObserver>
+      	observers = new LinkedList<ProductObserver>();
+  
+  	public void addObserver(ProductObserver o) {
+    	observers.add(o);
+	}
+  	public void removeObserver(ProductObserver o) {
+    	observers.remove(o);
+	} 	
+}
+```
+
+****Phase 2: Notification****
+
+```Java
+public class Product {
+     ...
+     public void sell(int n) {
+          sold += n;
+          double money = n * price;
+ 			for (ProductObserver observer : observers)
+     			observer.handleSale(money);
+     }    
+}
+```
+```Java
+public class CashRegister implements ProductObserver {
+     	private double cash;
+     	
+     	@Override public void handleSale(double money) {
+          cash += money;
+		} 
+}
+```
+
 ***
 
-#### 2. Inner Classes
 
+#### 2. Inner Classes
+- An inner class is a class defined inside another class.
+- An inner class can access all members of the outer class.
+- An inner class offers better encapsulation:
+	- x and foo can be hidden from the outside but shared with the inner class.
+	- The inner class can also be hidden from the outside.
+
+```Java
+public class OuterClass {
+  	private int x;
+  	private void foo() { x++; };
+  	
+  	private class InnerClass {
+    	public void bar() {
+  			foo();
+      	   System.out.println(x);
+     	}
+	}
+}
+```
+
+***Example***
+
+```Java
+public class Store {
+   	private Product product;
+  	private CashRegister cashRegister;
+  	public Store() {
+		product = new Product();
+		cashRegister = new CashRegister(); 
+		product.addObserver(cashRegister); 
+		product.addObserver(new SalePrinter());
+	}
+	
+  	private class SalePrinter implements ProductObserver {
+      	@Override public void handleSale(double money) {
+      		System.out.println(“You paid $” + money);
+      	}
+	}
+}
+```
 
 ***
 
 #### 3. Anonymous Inner Classes
+- An interface cannot be instantiated since it has no implementation: 
 
+	✖```new ProductObserver()``` 
+	
+- However, you can provide the implementation while instantiating it: 
+	
+	✔
+	
+	```Java
+	new ProductObserver() {
+	 	@Override public void handleSale(double money) {
+	      	System.out.println(“You paid $” + money);
+		} 
+	}
+	```
+- Same as defining a class that implements the interface, then creating a new instance of that class.
+**Except** the class has no name. Hence, it is “anonymous”.
+
+***Example***
+
+```Java
+public class Store {
+  	private Product product;
+  	private CashRegister cashRegister;
+   	public Store() {
+ 		product = new Product();
+		cashRegister = new CashRegister(); 
+		product.addObserver(cashRegister); 
+		
+		// Inner Class
+		product.addObserver(new ProductObserver() {
+    		@Override public void handleSale(double money) {
+         		System.out.println(“You paid $” + money);
+			} 
+		});
+ 	} 
+}
+```
 
 ***
 
 #### 4. Lambda Expressions
 
+- Anonymous inner classes with one method are very common.
+
+	```Java
+	new ProductObserver() {
+		@Override public void handleSale(double money) {
+			System.out.println(“You paid $” + money);
+		}
+	}
+	```
+
+- This is a LOT of syntax for just one method!
+- A lambda expression is a shorter way to write such a method:
+
+    ```Java
+    money -> System.out.println(“You paid $” + money)
+    ```
+	- 'money' is the method parameter
+	- 'System.out...' is the method body
+
+
+**Lambda Expressions (Java8)**
+
+```Java
+//A body with one statement has no braces or semicolon:
+money -> System.out.println(“Sale: $” + money)
+
+//Curly braces enclose a block of code. Each statement has a semicolon: 
+	money -> {
+    	String moneyStr = formatted(money);
+      	System.out.println(”Sale: $” + moneyStr);
+  	}
+  	
+//Multiple parameters are enclosed in parentheses: 
+	(param1, param2, param3) -> body
+
+```
+
+**Example Code**
+
+```Java
+public class Store {
+ 	private Product product;
+  	private CashRegister cashRegister;
+  	public Store() {
+		product = new Product(); 
+		cashRegister = new CashRegister(); 		product.addObserver(cashRegister); 
+		product.addObserver(
+        	money -> System.out.println(“You paid $” + money)
+		);
+ 	} 
+}
+```
 
 ***
 
+#### Which one should I use?
+- Use a lambda expression if the class has one method and is used once.
+- Use an anonymous inner class if the class has multiple fields/methods.
+- Use an inner class if you also need to create more than one instance.
+- Use a normal class if you also need to access it from other classes (or if you anticipate needing to)
 
+***
+
+<br>
+
+### Event-driven Programming
+- An “event” is something that “happens” in a GUI application.
+	- A button is clicked
+	- The mouse is dragged
+	- A menu item is selected
+- GUI programs are entirely driven by events using the observer pattern.
+	- Notify me when a button is clicked
+	- Notify me when the mouse is dragged
+	- Notify me when this menu item is selected
+- The observers respond to events to achieve the program’s goals.
+
+#### Handling a button click
+Define an observer for each button.
+- When a button is clicked, that button notifies your observer.
+
+<img src="images/handling-a-click.png" style="height: 150px">
+
+#### Registering an observer
+- Package:
+
+	```import javafx.event.*;```
+	
+- Observer interface:
+
+	```Java
+	public interface EventHandler< X> { 
+		void handle(X event);
+	}
+	```
+
+- x is the event type eg.:
+	- ```ActionEvent``` - when a button is clicked or a menu item is selected
+	- ```KeyEvent``` - when a key is pressed, released or typed 
+- Reistering and Observer:
+
+	```Java
+	loginBtn.setOnAction(observer); 
+	usernameTf.setOnKeyTyped(observer);
+	```
+
+**Registering an observer as an inner class**
+
+```Java
+public class MyApplication extends Application { 
+	private TextField usernameTf;
+	private PasswordField passwordTf;
+	@Override public void start(Stage stage) {
+		Button loginBtn = new Button(“Login”); 
+		loginBtn.setOnAction(new LoginButtonHandler());
+		...
+	}
+ 	private class LoginButtonHandler implements EventHandler<ActionEvent> { 
+		@Override public void handle(ActionEvent event) {
+    		if (checkPassword(usernameTf.getText(), passwordPf.getText())
+      		...
+		} 
+	}
+}
+```
+
+**Registering as an anonymous inner class**
+
+```Java
+public class MyApplication extends Application { 
+	private TextField usernameTf;
+	private PasswordField passwordTf;
+	@Override public void start(Stage stage) {
+		Button loginBtn = new Button(“Login”);
+ 		loginBtn.setOnAction(new EventHandler<ActionEvent>() { 
+ 			@Override public void handle(ActionEvent event) {
+    			if (checkPassword(usernameTf.getText(), passwordPf.getText())
+      			...
+			} 
+		});
+		... 
+	}
+}
+```
+
+**Registering as a lambda expression**
+
+```Java
+public class MyApplication extends Application {
+ 	private TextField usernameTf;
+ 	private PasswordField passwordTf;
+	
+	@Override public void start(Stage stage) { 
+		Button loginBtn = new Button(“Login”);
+		loginBtn.setOnAction(event -> {
+			if (checkPassword(usernameTf.getText(), passwordPf.getText())
+			... 
+		});
+		... 
+	}
+}
+```
+
+#### Example - Registering an observer
+**Spec**:
+
+- Build a GUI to add 1 to a value when you click a button. 
+- The GUI looks like this:
+
+<img src="images/speceexample1.png" style="height: 30px">
+  
+***The pieces:***
+
+- Label
+- TextField 
+- Button
+- HBox
+- EventHandler<X> 
+- ActionEvent
+- Scene
+- Stage
+
+<br>
+
+**The Layout**
+
+```Java
+public class IncrementorApplication extends Application {
+  	public static void main(String[] args) { launch(args); }
+  	private Label valueLbl;
+  	private TextField valueTf;
+  	private Button incrementBtn;
+	@Override
+   	public void start(Stage stage) {
+		valueLbl = new Label(“Value”);
+		valueTf = new TextField();
+		incrementBtn = new Button(“+1”);
+		HBox hBox = new HBox(10, valueLbl, valueTf, incBtn);
+		stage.setScene(new Scene(hBox));
+		stage.setTitle(“Incrementor”);
+		stage.show();
+    }
+}
+```
+
+<br>
+
+**TextField getter/setter pattern**
+
+- A TextField has a getter that converts from a String.
+	- Use Integer.parseInt(s) to convert the String s to an int.
+	- Use Double.parseDouble(s) to convert the String s to a double.
+- A TextField has a setter that converts to a String.
+
+```Java
+public class IncrementorApplication extends Application {
+  	private TextField valueTf;
+  	private int getValue() {
+		return Integer.parseInt(valueTf.getText() ); 
+	}
+	private void setValue(int value) { 
+		valueTf.setText(“” + value);
+	}
+}
+```
+
+<br>
+
+**Set the event handler (observer)**
+
+```Java
+public class IncrementorApplication extends Application {
+	private TextField valueTf;
+	private int getValue() { return Integer.parseInt(valueTf.getText()); } private void 	setValue(int value) { valueTf.setText(“” + value); }
+	
+	@Override
+   	public void start(Stage stage) {
+     	...
+      	incrementBtn = new Button(“+1”);
+		incrementBtn.setOnAction(event -> setValue(getValue() + 1)); 
+	}
+}
+```
+
+- The event handler can access getValue/setValue from the outer class.
+
+<br><br><br>
 ## MVC - Model View Controller 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
