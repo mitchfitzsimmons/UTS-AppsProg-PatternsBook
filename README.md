@@ -26,6 +26,61 @@ This is the patterns book for the subject Applications Programming at UTS.
 	* [The “every” pattern](#the-every-pattern)
 	* [The “none” pattern](#the-none-pattern)
 
+### [Classes](#classes)
+* [toString Method for classes and objects](#toString-Method-for-classes-and-objects)
+* [Format to 2 decimal places](#Format–to–2-decimal-places)
+* [Getter and setter methods](#Getter–and–setter-methods)
+* [Creating an object](#Creating-an-object)
+* [Passing an object](#passing-an-object)
+* [Using a toString Method](#Using-a-toString-Method)
+* [Menu Pattern](#Menu-Pattern)
+
+### [Lists](#lists)
+* [Array Lists](#array-lists)
+* [Linked Lists](#linked-lists)
+* [Looping over a list](#Looping-over-a-list)
+* [Copying a list](#Copying-a-list)
+* [Lookup Pattern](#Lookup-Pattern)
+* [Match Function](#match-function)
+
+### [System Design](#System-design)
+
+### [GUIs](#guis)
+* [JavaFX Concepts](#JavaFX-Concepts)
+	* [Nested Branches](#Nested-Branches)
+	* [Packages to Import](#Packages-to-Import)
+	* [Leaf Nodes](#Leaf-Nodes)
+	* [Branch Nodes VBox](#Branch-Nodes-VBox)
+	* [Branch Nodes HBox](#Branch-Nodes-HBox)
+	* [Branch Nodes Alignment](#Branch-Nodes-Alignment)
+	* [Branch Nodes GridPane](#Branch-Nodes-GridPane)
+	* [Application Classs](#Application-Class)
+	* [Sample Code](#Sample-Code)
+* [Patterns and Syntax](#Patterns-and-Syntax)
+	* [The Observer Pattern](#The-Observer-Pattern)
+* [Event driven Programming](#Event-driven-Programming)
+
+
+### [Model View Controller](#Model-View-Controller)
+* FXML
+	* Leaf Nodes
+	* VBox
+	* HBox
+	* GridPane
+		* GridPane Atributes
+	* Nested branches
+	* Label vs Text
+	* CSS
+		* Style classes
+	* Loading a scene graph from an FXML file
+* MVC 
+	* Overview
+	* Model
+	* View + Controller
+
+
+### GUI Lists
+* e
 
 
 ***
@@ -348,7 +403,7 @@ return true;
 
 ## Classes
 
-#### toString Method for classes/object
+#### toString Method for classes and objects
 Returns a string representation of the object. This is a standard method of all classes and we override the default behaviour.
  
 
@@ -364,7 +419,7 @@ public class Account {
 
 ***
 
-####  Format to 2 decimal places - pattern
+####  Format to 2 decimal places
 **Goal:** Show to two decimal places. 
 
 ```Java
@@ -580,7 +635,7 @@ private Account account(String type) {
 ***
 
 
-#### Match Function - Push Right
+#### Match Function
 ##### Client
 ```Java
 public class Customer {
@@ -619,7 +674,7 @@ More to Come
 - A stage is a place to display a scene (typically a window).
 - An application has a main method. It sets up and shows the primary stage.
 
-####Scene Graph
+#### Scene Graph
 <img src="images/scenegraph.png" align="right" style="height: 200px;"> 
 	
 - A scene is a tree of nodes.
@@ -664,11 +719,13 @@ import javafx.application.*;
 
 
 #### Leaf Nodes
-<img src="images/leaf-nodes.png"style="height: 270px;" >
+```XML
+<img src="images/leaf-nodes.png" style="height: 270px;">
+```
 
 ***
 
-#### Branch Nodes - VBox
+#### Branch Nodes VBox
 - A VBox lays out its children in a vertical box.
 - Create a VBox with 10 pixel spacing:
 	
@@ -695,7 +752,7 @@ import javafx.application.*;
 ***
 
 
-#### Branch Nodes - HBox
+#### Branch Nodes HBox
 
 - An HBox lays out its children in a horizontal box.
 - HBox box = new HBox(10);
@@ -712,7 +769,7 @@ import javafx.application.*;
 	
 ***
 
-####Branch Nodes - Alignment
+####Branch Nodes Alignment
 
 - Import
 
@@ -738,7 +795,7 @@ import javafx.application.*;
 
 ***
  
-#### Branch Nodes - GridPane
+#### Branch Nodes GridPane
  
 - A GridPane lays out its children in a grid of rows and columns.
 - Create a GridPane:
@@ -760,7 +817,7 @@ import javafx.application.*;
 
 ***
 
-#### Application Classs
+#### Application Class
 - The main class extends Application.
 	- It defines a main method.
 	- It overrides the start method.
@@ -1109,7 +1166,7 @@ public class Store {
 
 <br>
 
-### Event-driven Programming
+### Event driven Programming
 - An “event” is something that “happens” in a GUI application.
 	- A button is clicked
 	- The mouse is dragged
@@ -1290,31 +1347,1064 @@ public class IncrementorApplication extends Application {
 - The event handler can access getValue/setValue from the outer class.
 
 <br><br><br>
-## MVC - Model View Controller 
+## Model View Controller 
+
+### FXML
+
+* Consensus: Programming languages are not good for laying out GUIs.
+* Current trend: use a markup language.
+* FXML is the JavaFX Markup language based on XML.
+* Replace this Java code:
+
+   ```Label usernameLbl = new Label(“Username:”);```
+	
+	with this FXML code:
+	
+   ```<Label text=”Username:”/> ```
+
+#### Leaf Nodes
+
+```XML
+<Label text=”Username:”/>
+<TextField/>
+<PasswordField/>
+<Button text=”Login”/>
+<ImageView>
+    <image><Image url=”@flower.png”/></image>
+</ImageView>
+```
+
+#### VBox
+```XML
+<VBox spacing=”10” alignment=”center”>
+	<Label text=”Username:”/>
+	<TextField/>
+	<PasswordField/>
+	<Button text=”Login”/>
+	<ImageView>
+		<image><Image url=”@flower.png”/></image>
+	</ImageView>
+</VBox>
+```
+
+#### HBox
+```XML
+<HBox spacing=”10” alignment=”center”>
+	<Label text=”Username:”/>
+	<TextField/>
+	<Button text=”Login”/>
+	<ImageView>
+		<image><Image url=”@flower.png”/></image>
+	</ImageView>
+</HBox>
+```
+
+#### GridPane
+```XML
+<GridPane alignment=”center” hgap=”10” vgap=”10”>
+	<Label text=”Username:” GridPane.columnIndex=”0” GridPane.rowIndex=”0”/>
+	<TextField GridPane.columnIndex=”1” GridPane.rowIndex=”0”/>
+	<Label text=”Password:” GridPane.columnIndex=”0” GridPane.rowIndex=”1”/>
+	<PasswordField GridPane.columnIndex=”1” GridPane.rowIndex=”1”/>
+</GridPane>
+```
+
+##### GridPane Atributes
+* Attributes for GridPane:
+	* hgap sets the horizontal gap between child nodes.
+	* vgap sets the vertical gap between child nodes. 
+* Attributes for children of GridPane:
+	* GridPane.columnIndex sets the column position of a child.
+	* GridPane.rowIndex sets the row position of a child.
+	* GridPane.columnSpan sets how many columns the child occupies.
+ 
+
+#### Nested branches
+```XML
+<VBox spacing=”10”>
+  <Text text=”Login”/>
+  <GridPane alignment=”center” hgap=”10” vgap=”10”>
+    <Label text=”Username:” GridPane.columnIndex=”0” GridPane.rowIndex=”1”/>
+    <TextField GridPane.columnIndex=”1” GridPane.rowIndex=”1”/>
+    <Label text=”Password:” GridPane.columnIndex=”0” GridPane.rowIndex=”2”/>
+    <PasswordField GridPane.columnIndex=”1” GridPane.rowIndex=”2”/>
+</GridPane>
+  <HBox alignment=”center” spacing=”10”>
+    <Button text=”Login”/>
+    <Button text=”Cancel”/>
+  </HBox>
+</VBox>
+```
+
+#### Label vs Text
+```XML
+import javafx.scene.text.*;
+```
+
+* A <Label> is used to label a form input (e.g. a TextField, PasswordField, RadioButton, ...)
+* A <Text> is to display free-standing text (e.g. a heading, informative text, error messages, ...)
+* The text of a <Label> never changes.
+* The text of a <Text> can be changed programmatically via its setText() method.
+
+#### CSS
+* A CSS file specifies style information. E.g. font sizes, colours, borders.
+* The <stylesheets> element is placed within the root node of your scene graph
+and links to the URL of your CSS file. Prefix the URL with @ if it is in the same directory as the current file.
+
+	```XML
+	<GridPane alignment=”center” hgap=”10” vgap=”10”> 
+		<Text text=”Login” .../>
+		...
+		<stylesheets>
+	  		<URL value=”@style.css”/>
+	  	</stylesheets>
+	</GridPane>
+	```
+	
+	```XML
+	TextField, PasswordField {
+	  -fx-background-color: #ffffff;
+	  -fx-border-color: black;
+	} Label {
+	  -fx-font-size: 12px;
+	  -fx-font-weight: bold;
+	  -fx-text-fill: #ffffff;
+	} Button {
+	  -fx-font-family: "Arial";
+	  -fx-font-weight: bold;
+	  -fx-background-color: #212121;
+	  -fx-text-fill: #ffc107;
+	  -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0, 1 );
+	}
+	```
+
+##### Style classes
+
+```XML
+// FXML
+<VBox styleClass=”root”>
+	<Text text=”Login” styleClass=” heading”/> 
+	...
+</VBox>
+
+//Styles
+.root {
+-fx-background-color: #607b8d; 
+-fx-padding: 50px;
+}
+
+.heading {
+-fx-font-size: 32px; 
+-fx-font-family: "Arial"; 
+-fx-font-weight: bold; 
+-fx-fill: #ffc107; 
+-fx-stroke: #212121;
+}
+ 
+```
+
+#### Loading a scene graph from an FXML file
+* Use class FXMLLoader to load an FXML file.
+
+	```Java
+	import javafx.fxml.*;
+	
+	@Override public void start(Stage stage) throws Exception { 
+		FXMLLoader loader = new
+		FXMLLoader(getClass().getResource(“login.fxml”));
+	    Parent root = loader.load();
+	    stage.setTitle(title);
+	    stage.setScene(new Scene(root));
+	    stage.sizeToScene();
+	    stage.show();
+	}
+	```
+
+
+### MVC
+
+#### Overview
+The MVC pattern splits a GUI program into 3 layers
+
+* The models are Java objects that represent the data of your application and the operations on that data.
+* The views are the components that represent the graphical user interface of your application. Views “observe” data in the models.
+* The controllers are the components that handle user interaction. Controllers “observe” events that occur in the views.
+
+<img src="images/mvc.png" style="height: 200px;">
+
+##### MVC Observers
+MVC makes heavy use of the observer pattern:
+
+* Each view “observes” the model.
+	* When model data changes (e.g. bank balance changes), the views are notified so they can update the screen.
+* Each controller “observes” the view.
+	* When user interaction (e.g. a button click) happens in the view, the controllers are notified so that they can handle the event.
+
+<img src="images/mvcobs.png" style="height: 200px;">
 
 
 
+#### Model
+
+* The model contains:
+	* Data and related operations.
+* The model does not contain:
+	* User interface code:
+		* No read pattern
+		* No menu pattern
+		* No output pattern
+
+	```Java
+	public class Account {
+	    private String name;
+	    private double balance;
+	    public Account(String name) {
+	         this.name = name;
+	         balance = 0.0;
+	    }
+	    public void deposit(double amount) {
+	         balance += amount;
+	    }
+	    public void withdraw(double amount) {
+	         balance -= amount;
+	    }
+	}
+	```
+
+##### Accessing data from the view
+* The GUI needs to display and sometimes update data in the model.
+* Therefore, the model should provide getters and setters for data.
+
+	```Java
+	public class Account {
+	    ...
+	    public void getBalance() { return balance; }
+	    public String getName() { return name; }
+	    public void setName(String name) { this.name = name; }
+	}
+	```
+
+* The balance cannot be set directly, so don’t provide a setter. Instead, use the deposit and withdraw methods.
+
+##### JavaBeans Properties
+* A pair of getter/setter methods is called a JavaBeans property: 
+
+	```Java
+	// Getter
+	public String getName() { 
+	 	return name; 
+	}
+	
+	// Setter
+	public void setName(String name) {
+		this.name = name;
+	}
+	```
+
+* A read-only JavaBeans property is a getter without a setter. e.g. 
+
+	```Java
+	public double getBalance() {
+		return balance;
+	}
+	```
+
+* A boolean property getter uses the prefix “is” instead of “get”: 
+
+	```Java
+	public boolean isFixedInterestRate() {
+		return fixedInterestRate;
+	}
+	```
 
 
+##### JavaFX Properties
+
+Simple Properties | Properties | Read-only Properties
+---|---|---
+SimpleIntegerProperty | IntegerProperty | ReadOnlyIntegerProperty
+SimpleDoubleProperty | DoubleProperty | ReadOnlyDoubleProperty
+SimpleBooleanProperty | BooleanProperty | ReadOnlyBooleanProperty
+SimpleStringProperty | StringProperty | ReadOnlyStringProperty
+SimpleObjectProperty | ObjectProperty | ReadOnlyObjectProperty
+
+<br>
+
+**Pattern #1: Immutable Property**
+
+* A property that never changes.
+* Final getter. No setter.
+
+	```Java
+	public class SomeClass {
+	    private final int value;
+	    public SomeClass(int value) {
+	         this.value = value;
+	    }
+	    public final int getValue() { return value; }
+	}
+	```
+<br>
+
+**Pattern #2: Read Write Property**
+
+* A property that is readable, writable and observable.
+* Encapsulate the value in a property object.
+* Final getter and setter.
+* Property method called xProperty (where x is the name of the property).
+
+	```Java
+	public class SomeClass {
+	    private IntegerProperty value = new SimpleIntegerProperty();
+		public SomeClass(int value) { 
+			this.value.set(value) ;
+		}
+	
+		public final int getValue() { return value.get(); }
+		public final void setValue(int value) { this.value.set(value); } 
+		public IntegerProperty 	valueProperty() { return value; }
+	}
+	```
+
+<br>
+
+**Pattern #3: Read Only Property**
+
+* A property that is readable and observable. Can be written by the class.
+* Encapsulate the value in a property object.
+* Final getter and optional private setter.
+* Property method returns a read only property.
+
+	```Java
+	public class SomeClass {
+	    private IntegerProperty value = new SimpleIntegerProperty();
+	    public SomeClass(int value) {
+	         this.value.set(value);
+	    }
+	
+		public final int getValue() { return value.get(); }
+		private final void setValue(int value) { this.value.set(value); } 
+		public ReadOnlyIntegerProperty valueProperty() { return value; }
+	  }
+	```
+
+<br>
+
+**Pattern #4: Immutable Property, Mutable State**
+
+* A property that is a reference to an object.
+* The reference doesn’t change, but the properties of the object can.
+* Final getter. No setter
+
+	```Java
+	public class Customer {
+	    private Account account;
+	    public Customer() {
+	         account = new Account(“Mr Smith”);
+	    }
+	    public final Account getAccount() { return account; }
+	}
+	```
+	
+<br>
+
+* Not possible: customer.setAccount(new Account(“Dr Smith”));
+* Still possible: customer.getAccount().setName(“Dr Smith”);
+
+**Account class with JavaFX Properties**
+
+```Java
+public class Account {
+   	private StringProperty name = new SimpleStringProperty();
+   	private DoubleProperty balance = new SimpleDoubleProperty();
+   	public Account(String name) {
+     	this.name.set(name);
+      	balance.set(0.0);
+   	}
+   	public final String getName() { return name.get(); }
+  	public final void setName(String name) { this.name.set(name); }
+   	public StringProperty nameProperty() { return name; }
+   	public final double getBalance() { return balance.get(); }
+   	public ReadOnlyDoubleProperty balanceProperty() { return balance; }
+   	public void deposit(double amount) { balance.set(getBalance() + amount); }
+   	public void withdraw(double amount) { balance.set(getBalance() - amount);
+}
+```
+
+**Customer class with JavaFX properties**
+
+```Java
+public class Customer {
+  	private final Account account;
+  	
+   	public Customer(String name) {
+      	account = new Account(name);
+  	}
+  	public final Account getAccount() {
+      	return account;
+	} 
+}
+ 
+```
+
+**The Payoff**
+
+* Each property implements the observer pattern.
+* The view can be notified whenever a property changes.
+ 
+
+#### View + Controller
+
+The **view** is an FXML file. It contains the scene graph.
+
+```XML
+<VBox>
+    <Label text=”Name:”/>
+    ...
+</VBox>
+```
+
+The **controller** is a Java class. It contains the event handlers.
+
+```Java
+public class AccountController {
+  	...
+}
+```
+
+Each view has an associated controller class to handle user interaction.
 
 
+#####  Link the view to the controller
+
+* The root node of a scene specifies the controller:
+
+	```XML
+	<VBox xmlns:fx=”http://javafx.com/fxml” fx:controller=”AccountController”> 
+		<Label text=”Name:”/>
+		<TextField/>
+		<Label text=”Balance:”/>
+	   	<TextField/>
+	   	<Label text=”Transaction amount ($):”/>
+	   	<TextField text=”0.00”/>
+	   	<Button text=”Deposit”/>
+	   	<Button text=”Withdraw”/>
+	</VBox>
+	```
+	
+* **AccountController** is the class name for this view’s controller.
+
+##### Node IDs
+
+* Assign an ID to each node that the controller will need to access:
+
+	```XML
+	<VBox xmlns:fx=”http://javafx.com/fxml” fx:controller=”AccountController”> 
+		<Label text=”Name:”/>
+		<TextField fx:id=”nameTf”/>
+		<Label text=”Balance:”/>
+		<TextField fx:id=”balanceTf”/>
+		<Label text=”Transaction amount ($):”/> 
+		<TextField fx:id=”amountTf” text=”0.00”/> 
+		<Button text=”Deposit”/>
+		<Button text=”Withdraw”/>
+	</VBox> 
+	```
+
+##### The Controller
+
+* For each node with an fx:id, declare a field in the controller with the same name and annotate it with @FXML.
+* Each node will be “injected” into the corresponding field.
+
+	```Java
+	import javafx.fxml.*;
+	public class AccountController {
+		@FXML private TextField nameTf; 
+		@FXML private TextField balanceTf; 
+		@FXML private TextField amountTf;
+	}
+	```
+
+##### Define TextField getters/setters as needed
+
+```Java
+public class AccountController { 
+	@FXML private TextField nameTf; 
+	@FXML private TextField balanceTf; 
+	@FXML private TextField amountTf;
+
+  	private String getName() { return nameTf.getText(); }
+  	private double getBalance() { return Double.parseDouble(balanceTf.getText());
+}
+  	private double getAmount() { return Double.parseDouble(amountTf.getText()); }
+  	private void setAmount(double amount) { amountTf.setText(“” + amount); }
+}
+```
+
+##### Set the event handlers on the buttons in FXML
+
+```XML
+<VBox xmlns:fx=”http://javafx.com/fxml” fx:controller=”AccountController”>
+  	<Label text=”Name:”/>
+   	<TextField fx:id=”nameTf”/>
+   	<Label text=”Balance:”/>
+	<TextField fx:id=”balanceTf”/>
+	<Label text=”Transaction amount ($):”/>
+	<TextField fx:id=”amountTf” text=”0.00”/>
+	<Button text=”Deposit” onAction=”#handleDeposit”/> 
+	<Button text=”Withdraw” onAction=”#handleWithdraw”/>
+</VBox>
+```
+
+* **handleDeposit** and **handleWithdraw** name methods in the controller to handle action events for each button.
+ 
+##### Define the event handlers in the controller
+
+```Java
+public class AccountController {
+  	...
+   	private Account account = new Account(“Mr. Smith”);
+
+	@FXML private void handleDeposit(ActionEvent event) { 
+		account.deposit(getAmount());
+	setAmount(0);
+	}
+
+	@FXML private void handleWithdraw(ActionEvent event) { 
+		account.withdraw(getAmount());
+		setAmount(0);
+	} 
+}
+```
+
+##### The @FXML initialize method
+
+Nodes annotated with @FXML are injected by FXMLLoader. BUT, only AFTER the constructor has been called.
+
+Dereferencing a node from the constructor results in a NullPointerException.
+
+**Solution:** Put initialisation code into the @FXML-annotated initialize method. The FXMLLoader calls this after injecting the nodes.
+
+```Java
+public class AccountController {
+	@FXML private TextField nameTf; 
+	@FXML private TextField balanceTf; 
+	@FXML private TextField amountTf;
+
+	public AccountController() { 
+		amountTf.setText(“0.00”);
+	}
+	
+	@FXML private void initialize() { 
+		amountTf.setText(“0.00”);
+	} 
+}
+```
+
+##### Property bindings
+
+Goal: Property p1 is updated whenever property p2 changes. i.e. p1 observes p2.
+
+```p1.bind(p2);```
+
+Goal: Properties p1 and p2 are both updated whenever the other changes. i.e. p1 observes p2 and p2 observes p1
+
+```p1.bindBidirectional(p2);```
 
 
+##### Link the view to the model
+
+```Java
+public class AccountController {
+   	...
+	@FXML private void initialize(){ 
+		nameTf.textProperty().bindBidirectional(account.nameProperty()); 		balanceTf.textProperty().bind(account.balanceProperty());
+	} 
+}
+```
+
+* Bidirectional bind:
+	* When the account name changes, nameTf is updated.
+	* When the user edits nameTf, the account name is updated.
+* Unidirectional bind:
+	* When the bank balance changes, balanceTf is updated.
+	* The user can’t edit balanceTf.
 
 
+##### Expression bindings in FXML
+
+FXML supports unidirectional property bindings through ```${...}``` notation.
+
+* **In Java:** 
+
+```balanceTf.textProperty().bind(controller.getAccount().balanceProperty());```
+
+* **In FXML:** 
+
+```<TextField fx:id=”balanceTf” text=”${controller.account.balance}”/>```
+
+Binding expressions in FXML understand property naming conventions:
+
+* Given the expression foo.bar, FXML looks for the a getBar() method or isBar() method or barProperty() method inside of object foo.
+
+FXML does not support bidirectional bindings. They must be done in Java.
 
 
+##### Link the view to the model in FXML
+
+* Bind balanceTf to the balance inside the account inside the controller:
+
+	```XML
+	<VBox xmlns:fx=”http://javafx.com/fxml” fx:controller=”AccountController”>
+		...
+		<Label text=”Balance:”/>
+		<TextField fx:id=”balanceTf” text=”${controller.account.balance}” />
+	</VBox>
+	```
+
+* Expose an account property in the controller.
+	* Property Pattern #4: Immutable property with mutable state:
+
+	```Java
+	public class AccountController {
+	  	private Account account = new Account(“Mr. Smith”);
+	  	public final Account getAccount() { return account; }
+	}
+	```
 
 
+##### More complex bindings in Java
+
+* Bind a text field to a double property formatted as currency: 
+
+	```Java
+	balanceTf.textProperty().bind(account.balanceProperty().asString(“$%.2f”));
+	```
+
+* Bind a text field to a double property concatenated with a string:
+
+	```Java
+	balanceTf.textProperty().bind(account.balanceProperty().asString().concat(“ dollars”));
+	```
+
+* Bind a property to another property to another property times a number:
+
+	```Java
+	public class Account {
+	  	private static final double INTEREST_RATE = 0.07;
+	 	private DoubleProperty balance = new SimpleDoubleProperty();
+	   	private DoubleProperty interest = new SimpleDoubleProperty();
+	 	public Account() {
+	     	interest.bind(balance.multiply(INTEREST_RATE));
+		}
+	}
+	```
+
+The JavaFX expression binding language supports:
+
+* Dot notation for properties. e.g. controller.account.balance
+* Literals: “a string”, ‘a string’, 3.45, 27, null, true, false
+* Operators: +, -, *, /, !, &&, ||, .....
+
+Examples:
+
+* ${account.balance * 0.07} binds to the account balance times 0.07
+* ${account.balance + ‘ dollars’} binds to a string “1000.0 dollars” where
+1000.0 is updated whenever the account balance changes.
+ 
+<br>
+
+#### MVC summary
+<img src="images/mvcsum1.png" style="height: 200px;"> 
+<br>
+<br>
+<img src="images/mvcsum2.png" style="height: 200px;"> 
+<br>
+<br>
+<img src="images/mvcsum3.png" style="height: 200px;"> 
+<br>
+<br>
+<img src="images/mvcsum4.png" style="height: 200px;"> 
 
 
+### GUI Lists
+
+#### Packages
+* A package is a collection of related classes
+* Each application or library should be placed in its own package.
+* To avoid two programmers using the same package name for their application, we follow a convention:
+	* Companies use the reverse of their domain name.
+		* e.g. For domain name mycompany.com, use the package name com.mycompany
+	* Different applications made by the same company are in sub-packages.
+		* e.g. com.mycompany.calculatorapp and com.mycompany.studyapp
+* Complex Applications are further divided into sub-packages.
+* e.g. in an MVC application, you may have 3 sub-packages:
+	* ```com.mycompany.studyapp.model``` contains the domain model classes
+	* ```com.mycompany.studyapp.view``` contains the views
+	* ```com.mycompany.studyapp.controller``` contains the controller classess
 
 
+#### Package Declarations
+* Declare a class in a package with a package declaration:
+
+	```Java
+	package com.mycompany.bankapp.model ;
+	
+	public class Account {
+	         ...
+	}
+	```
+
+* On the file system, sub-packages map onto sub-directories.
+	* e.g. the ```account``` class is stored in the corresponding sub-directory:
+
+		```Java
+		com/mycompany/bankapp/model/ Account.java
+		```
+
+#### Implications for FXML
+* In FXML, use a fully-qualified class name to refer to a class in a package: 
+
+	```fx:controller=”com.mycompany.bankapp.controller.AccountController”```
+
+* In Java, use an absolute path to refer to an FXML file in a package:
+
+	```new FXMLLoader(getClass().getResources(“/com/mycompany.bankapp/view/account.fxml”));```
+ 
+#### ListView
+ 
+* A ListVew<X> displays a list of items of type X.
+* Items can be either: 
+	* Strings
+	* Objects that have a toString() function
+* Create a ListView in FXML:
+    
+    ```<ListView fx:id=”accountsLv”/>```
+    
+* Create a ListView in Java:
+
+	```ListView<Account> accountsLv = new ListView<Account>();```
+  
+##### ListView Selection Models
+ 
+* ListViews support two selection models:
+	* SINGLE selection (the default model)
+	* MULTIPLE selection
+* In both selection models:
+	* Clicking an item selects that item
+	* The previously selected item is also deselected
+* In the multiple selection model:
+	* Shift-click or control-click to select multiple items
+* If your application requires multiple selection: 
+
+	```listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);```
+ 
+##### Setting a placeholder
+
+* A placeholder node is shown when the ListView is empty.
+* In FXML: 
+
+	```XML
+	<ListView>
+		<placeholder>
+			<Label text=”No accounts”/>
+		</placeholder>
+	</ListView>
+	```
+
+* In Java:
+
+```accountsLv.setPlaceholder(new Label(“No accounts”));```
+
+##### Setting preferred dimensions
+
+* In FXML:
+
+	```<ListView prefWidth=”300” prefHeight=”200”/>```
+
+* In Java:
+
+	```Java
+	accountsLv.setPrefWidth( 300); 
+	accountsLv.setPrefHeight( 200);
+	```
+
+##### Linking a ListView to the MODEL
+* **Goal:** Whenever the model changes the view is updated.
+
+	```Java
+	public class Customer {
+		private LinkedList<Account> accounts = new LinkedList<Account>();
+		public void addAccount(String type) {
+	   		accounts.add(new Account(type));
+	  	} 
+	}
+	```
+
+* **Solution**: Use an Observable List
+
+	```Java
+	public class Customer {
+		private ObservableList<Account> accounts = FXCollections.observableArrayList() ;
+	  	
+	  	public void addAccount(String type) {
+	   		accounts.add(new Account(type));
+		} 
+	}
+	```
+
+* Observers are notified whenever the list contents changes.
+
+##### ObservableList "is a" relationships
+
+// include image here
+
+##### Linking a ListView to the model
+
+* Define the observable list as an immutable property with mutable state:
+
+	```Java
+	public class Customer {
+		private ObservableList<Account> accounts = ...;
+		public final ObservableList<Account> getAccounts() { 
+				return accounts;
+		} 
+	}
+	```
+
+* Bind the “items” property of ListView to the accounts property of customer
+	* In FXML: <ListView items=”${controller.customer.accounts}”/>
+	* In Java: accountsLv.setItems(customer.getAccounts());
+ 
+
+##### Selecting a ListView item
+
+**Goal:** The user selects an item from a ListView then clicks a button to perform an action on the selected item.
+
+**Solution:** Set the onAction handler for the button to perform the following two steps:
+
+1. Get the selected item (pattern)
+2. Perform an action on that item
+ 
+##### ListView getter pattern
+
+* A ListView has a getter that gets the currently selected item.
+* It uses the getSelectedItem() method of the selection model.
+
+	```Java
+	public class CustomerController {
+	  	@FXML private ListView<Account> accountsLv;
+	  	private Account getSelectedAccount() {
+	     	return accountsLv.getSelectionModel().getSelectedItem();
+		} 
+	}
+	```
+
+##### Example: View the selected account
+**FXML file**
+
+```XML
+<ListView fx:id=”accountsLv”/>
+<Button text=”View Account” onAction=”#handleViewAccount” />
+```
+
+**Controller**
+
+```Java
+public class CustomerController {
+ 	@FXML private ListView<Account> accountsLv;
+  	
+  	private Account getSelectedAccount() {
+    	return accountsLv.getSelectionModel().getSelectedItem();
+	}
+   
+   	@FXML private void handleViewAccount(ActionEvent event) {
+      	Account account = getSelectedAccount();
+      	System.out.println(“You selected: “ + account);
+	}
+}
+```
+
+* If accountsLv is clicked when no item is selected, getSelectedAccount() returns null.
 
 
+##### JavaFX Controls
+
+<img src="images/javafxcontrolls1.png" style="height: 200px;"> 
+
+<img src="images/javafxcontrolls2.png" style="height: 200px;"> 
+
+##### Getter and Setter Patterns for controls
+
+* It is good practice to define getters and setters to wrap the contolled value. E.g.
+  
+	```Java  
+	private String getGender() {
+		if (genderTg.getSelectedToggle() != null)
+			return genderTg.getSelectedToggle().getUserData().toString();
+		else
+			return null;
+	}
+	
+	private boolean isAgree() {
+	 	return agreeCb.isSelected();
+	}
+	
+	private Account getAccount() {
+	  	return accountsCmb.getSelectionModel().getSelectedItem();
+	}
+	```
+
+### GUI Tables
+
+#### TableView
+
+* A TableView<X> displays a list of items of type X.
+* A TableView has:
+	* A row for each item
+	* A column for each property of each item
+* e.g. A TableView<Account> has:
+	* A row for each Account
+	* A column for each property of each Account
 
 
+#### FXML and Java code
+
+* Creating a TableView in FXML:
+
+	```Java
+	<TableView fx:id=”accountsTv” prefWidth=”300” prefHeight=”200”>
+		<placeholder><Label text=”No accounts”/></placeholder>
+		<columns>
+			<TableColumn text=”Type”/>
+			<TableColumn text=”Balance”/>
+		</columns>
+	</TableView>
+	```
+
+* Declaring the TableView in your controller: 
+
+	```@FXML private TableView<Account> accountsTv;```
+  
+##### Linking the TableView to the Model
+
+* Two ways to link the view and model
+	* In FXML:
+	```<TableView fx:id=”accountsTv” items=” ${controller.customer.accounts} ”>```
+	
+	* In Java:
+	```accountsTv.setItems( getCustomer().getAccounts() );```
+* You must:
+	* Expose a “customer” property in the controller
+	* Expose an “accounts” property in the customer model
+ 
+##### Linking each TableColumn to a model property
+
+* Use a PropertyValueFactory to link the column to a property value: 
+
+	```Java
+	<?import javafx.scene.control.cell.*?>
+	...
+	<columns>
+		<TableColumn text=”Type”>
+	    	<cellValueFactory><PropertyValueFactory property=”type”/></cellValueFactory>
+	   	</TableColumn>
+	   	<TableColumn text=”Balance”>
+	     	<cellValueFactory><PropertyValueFactory property=”balance”/></cellValueFactory>
+	   	</TableColumn>
+	</columns>
+	```     
+
+* You must expose the following properties in the account model: 
+	* type
+	* balance
 
 
+##### Cell Value Factories
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+* A cell value factory is generates the contents of a cell. Two options:
+	* PropertyValueFactory is a cell value factory that just displays a property value.
+	* Define your own custom cell value factory to display data how you want.
+* A cell value factory is set on the column: 
+
+	```TableColumn<Account,String> column = ...; ```
+	```column.setCellValueFactory (...);```
+
+* TableColumn<X,Y> has two type parameters:
+	* X is the type of the item being displayed in the row
+	* Y is the content type of the cell in this column
+
+##### Setting a custom cell value factory
+
+* Assign an id to the column:
+
+	```<TableColumn fx:id=”balanceClm” text=”Balance”/>```
+
+* In your controller:
+
+	```Java
+	@FXML private TableColumn<Account, String> balanceClm; 
+	@FXML private void initialize() {
+	   	balanceClm.setCellValueFactory(cellData ->
+	     	cellData.getValue().balanceProperty().asString(“$%.2f”));
+	}
+	```
+
+* ```TableColumn<Account,String>``` means the item for this row is an Account, and the cell contents to be displayed is a String.
+ 
+##### Change Listeners
+
+* A change listener is any object that implements the ChangeListener<X> interface, where <X> is the type of value being observed.
+* The interface is imported:
+
+```Java
+import javafx.beans.value.*;
+public interface ChangeListener<X> {
+  	void changed(ObservableValue<? extends X> observable,
+	   	X oldValue, X newValue);
+}
+```
+
+* Register your observer with: observable.addListener(observer);
+ 
+##### Enable button when account is selected
+
+* Update the disable property of the button whenever the selectedItem property changes.
+* FXML:
+
+```XML
+<TableView fx:id=”accountsTv” items=”${controller.customer.accounts}”/> <Button fx:id=”viewBtn” text=”View Account” disable=”true”
+             onAction=”#handleViewAccount”/>
+```
+
+* Controller:
+
+```Java
+@FXML private void initialize() {
+	accountsTv.getSelectionModel(). selectedItemProperty ().addListener( 
+		(o, oldAcct, newAcct) -> viewBtn. setDisable(getAccount() == null));
+}
+```
+
+##### Enable button when Type >= 4 characters
+
+* Update the button’s disable property when the text property changes.
+* FXML:
+
+	```XML
+	<TextField fx:id=”typeTf”/>
+	<Button fx:id=”addBtn” text=”View Account” disable=”true”
+	         onAction=”#handleViewAccount”/>
+	```
+
+* Controller:
+
+	```Java
+	@FXML private void initialize() {
+		typeTf.textProperty().addListener((o, oldText, newText) -> 
+			addBtn.setDisable(getAccount() == null));
+	}
+	```
+ 
+
+<br><br><br><br><!--<br><br><br><br><br><br><br><br><br><br>-->
